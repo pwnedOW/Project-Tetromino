@@ -1,0 +1,44 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+body {
+    height: 100%;
+    overflow: hidden;
+}
+
+.score {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 2rem;
+}
+
+.inner-display > ul {
+    border: 1px solid #333;
+    width: 250px;
+    margin: 0 auto;
+}
+
+.inner-display > ul > li {
+    width: 100%;
+    height: 25px;
+}
+
+.inner-display > ul > li > ul {
+    display: flex;
+}
+
+.inner-display > ul > li > ul > li {
+    width: 25px;
+    height: 25px;
+    outline: 1px solid lightgray;
+}
+
+.tree {
+    background: #67c23a;
+}
