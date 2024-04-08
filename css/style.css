@@ -62,14 +62,43 @@ body {
     outline: 1px solid lightgray;
 }
 
-.bar {
-    background: salmon;
+.nextbox {
+    width: 75px;
+    height: 45px;
+    align-items: center;
+    text-align: center;
 }
+
+.nextbox > ul > li {
+    width: 100%;
+    height: 15px;
+}
+
+.nextbox > ul > li > ul {
+    display: flex;
+    text-align: center;
+}
+
+.nextbox > ul > li > ul > li {
+    width: 15px;
+    height: 15px;
+    outline: 1px solid lightgray;
+}
+
 .tree {
     background: #67c23a;
 }
+.square {
+    background: #2c82c9;
+}
+.bar {
+    background: salmon;
+}
 .zee {
     background: #e6a23c;
+}
+.see {
+    background: #46c346;
 }
 .elLeft {
     background: #8e44ad;
@@ -77,6 +106,21 @@ body {
 .elRight {
     background: #16a085;
 }
-.square {
-    background: #2c82c9;
+
+
+@keyframes bomb {
+    50% {
+        opacity: 0;
+        width: 50%;
+    }
+}
+
+.wave {
+    animation-name: wave;
+    animation-duration: 0.5s;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    animation-direction: alternate;
+    transition: 0.5s;
 }
