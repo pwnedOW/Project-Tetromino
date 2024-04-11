@@ -19,12 +19,6 @@ body {
     overflow: hidden;
 }
 
-.outer-display {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .game-text {
     display: flex;
     justify-content: center;
@@ -33,7 +27,7 @@ body {
     position: fixed;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0,0,0,0.3);
     left: 0;
     top: 0;
     color: #fff;
@@ -49,21 +43,42 @@ body {
 }
 
 .score {
+    width: 100%;
+    height: 50%;
+    align-content: center;
     text-align: center;
     font-size: 2em;
-    margin-bottom: 2rem;
+}
+
+.display-container {
+    flex-wrap: wrap;
+    background-color: #837B3A;
+    border: 1px solid #333;
+    width: 370px;
+    height: 338px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.side-display {
+    display: flex;
+    flex-wrap: wrap;
+    width: 110px;
+    height: 100%;
 }
 
 .inner-display > ul {
     background-color: #837B3A;
-    border: 1px solid #333;
-    width: 150px;
-    margin: 0 auto;
+    border: 2px solid #333;
+    width: 120px;
+    height: 325px;
 }
 
 .inner-display > ul > li {
     width: 100%;
-    height: 15px;
+    height: 13px;
 }
 
 .inner-display > ul > li > ul {
@@ -72,33 +87,35 @@ body {
 
 .inner-display > ul > li > ul > li {
     margin: 1px;
-    width: 14px;
-    height: 14px;
+    width: 12px;
+    height: 12px;
     /* outline: 1px solid #34280E; */
 }
 
 .nextbox {
-    font-size: 32px;
-    width: 75px;
-    height: 45px;
-    align-items: center;
+    font-size: 2rem;
+    width: 100%;
+    height: 50%;
+    justify-content: center;
     text-align: center;
+    align-content: center;
 }
 
 .nextbox > ul > li {
     width: 100%;
-    height: 15px;
+    height: 13px;
 }
 
 .nextbox > ul > li > ul {
     display: flex;
     text-align: center;
+    justify-content: center;
 }
 
 .nextbox > ul > li > ul > li {
     margin: 1px;
-    width: 14px;
-    height: 14px;
+    width: 12px;
+    height: 12px;
     /* outline: 1px solid #34280E; */
 }
 

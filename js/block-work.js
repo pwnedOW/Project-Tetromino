@@ -33,11 +33,9 @@ const nextbox = document.querySelector('.nextbox > ul');
 const BLOCKBOX = [
     ['tree', [[3,1],[1,1],[2,0],[2,1]]],
     ['square', [[1,0],[1,1],[2,0],[2,1]]],
-    ['bar', [[0,1],[1,1],[2,1],[3,1]]],
+    ['bar', [[1,1],[2,1],[3,1],[4,1]]],
     ['zee', [[1,0],[2,0],[2,1],[3,1]]],
-    ['see', [[3,0],[2,0],[2,1],[1,1]]], 
-    // ㅁㅁㅁㅁㅁ 
-    // ㅁㅁㅁㅁㅁ
+    ['see', [[3,0],[2,0],[2,1],[1,1]]],
     ['elLeft', [[1,0],[1,1],[2,1],[3,1]]],
     ['elRight', [[1,1],[2,1],[3,1],[3,0]]]
 ]
@@ -225,7 +223,7 @@ function checkMatch(){
         }
     })
     if(bonus > 0){
-        score += bonus**2;
+        score += bonus**2*10;
         scoreDisplay.innerText = score;
     }
 
