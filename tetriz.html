@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
 </head>
-
 <body>
     <div class="container">
         <div class="upper-body">
-            <div class="display-container">
-                <div class="game-text">
-                    <span>-GAME OVER-</span>
-                    <button class="restart">다시시작</button>
-                </div>
+            <div class="click-alert">◀click!</div>
+            <div class="battery-LED"></div>
+            <div class="off-switch"></div>
+            <div class="on-hider"></div>
+            <div class="off-hider"></div>
+            <button class="btn power-button">power</button>
+            <div class="display-container power-toggle">
                 <span class="inner-display">
+                    <div class="game-text">
+                        <span>-GAME OVER-</span>
+                    </div>
                     <ul></ul>
                 </span>
                 <div class="side-display">
@@ -29,17 +29,16 @@
             </div>
         </div>
         <div class="lower-body"> 
-            <button class="arrow btn arrow-up">up</button>
-            <button class="arrow btn arrow-down">down</button>
-            <button class="arrow btn arrow-left">left</button>
-            <button class="arrow btn arrow-right">right</button>
+            <button class="btn arrow arrow-up">up</button>
+            <button class="btn arrow arrow-down">down</button>
+            <button class="btn arrow arrow-left">left</button>
+            <button class="btn arrow arrow-right">right</button>
             <button class="btn buttonA">A</button>
             <button class="btn buttonB">B</button>
             <button class="btn select">select</button>
-            <button class="btn start">start</button>
+            <button class="btn start blink">start</button>
         </div>
     </div>
-    
     <script src="./js/block-work.js" type="module"></script>
 </body>
 

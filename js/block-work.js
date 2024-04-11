@@ -4,10 +4,12 @@ import BLOCKS from './blocks.js'
 const innerDisplay = document.querySelector('.inner-display > ul');
 const gameText = document.querySelector('.game-text');
 const scoreDisplay = document.querySelector('.score');
-const restartButton = document.querySelector('.game-text > .restart');
+const startButton = document.querySelector('.start');
+const displayContainer = document.querySelector('.display-container');
+const powerButton = document.querySelector('.power-button');
 
 // setting
-const GAME_ROWS = 25;
+const GAME_ROWS = 20;
 const GAME_COLS = 10;
 
 // variables
@@ -57,6 +59,8 @@ init()
 
 // functions
 function init(){
+    gameText.style.display = "none"
+    startButton.classList.remove('blink')
     gameover = false;
     score = 0;
     scoreDisplay.innerText = score;
@@ -185,6 +189,8 @@ function renderBlocks(moveType=''){
             clearInterval(downInterval);
             gameover = true;
             showGameoverText();
+            startButton.classList.add('blink');
+            startButton.focus();
             return true;
         }
         
@@ -338,20 +344,25 @@ document.addEventListener('keydown', e =>{
             case 38: // 위 화살표
                 changeDirection();
                 break;
+            case 90: // z
+                changeDirection();
+                break;
+            case 88: // x
+                dropBlock();
+                break;
             case 32:
                 dropBlock();
+                break;
+            case 13:
+                innerDisplay.innerHTML = '';
+                gameText.style.display = "none"
+                replay = true;
+                init();
                 break;
             default:
                 break;
         }
     }
-})
-
-restartButton.addEventListener('click', ()=>{
-    innerDisplay.innerHTML = '';
-    gameText.style.display = "none"
-    replay = true;
-    init()
 })
 
 window.addEventListener("keydown", function(e) {
@@ -362,29 +373,59 @@ window.addEventListener("keydown", function(e) {
 }, false);
 
 document.querySelector('.arrow-up').addEventListener('click', (e)=>{
-    changeDirection();
+    if (!gameover){
+        changeDirection();
+    }
 })
 document.querySelector('.arrow-down').addEventListener('click', (e)=>{
-    moveBlock('top', 1);
+    if (!gameover){
+        moveBlock('top', 1);
+    }
 })
 document.querySelector('.arrow-left').addEventListener('click', (e)=>{
-    moveBlock('left', -1);
+    if (!gameover){
+        moveBlock('left', -1);
+    }
 })
 document.querySelector('.arrow-right').addEventListener('click', (e)=>{
-    moveBlock('left', 1);
+    if (!gameover){
+        moveBlock('left', 1);
+    }
 })
 document.querySelector('.buttonA').addEventListener('click', (e)=>{
-    changeDirection();
+    if (!gameover){
+        changeDirection();
+    }
 })
 document.querySelector('.buttonB').addEventListener('click', (e)=>{
-    dropBlock();
+    if (!gameover){
+        dropBlock();
+    }
 })
-document.querySelector('.start').addEventListener('click', (e)=>{
+document.querySelector('.select').addEventListener('click', (e)=>{
+    displayContainer.requestFullscreen();
+})
+startButton.addEventListener('click', (e)=>{
     innerDisplay.innerHTML = '';
     gameText.style.display = "none"
     replay = true;
     init();
 })
+powerButton.addEventListener('click', (e)=>{
+    document.querySelector('.battery-LED').classList.toggle('power-toggle');
+    document.querySelector('.off-switch').classList.toggle('power-toggle');
+    document.querySelector('.on-hider').classList.toggle('power-toggle')
+    document.querySelector('.click-alert').style.display = 'none'
+    displayContainer.classList.toggle('power-toggle');
+    displayContainer.classList.toggle('wave');
+    innerDisplay.innerHTML = '';
+    gameText.style.display = "none";
+    replay = true;
+    init();
+})
+
+
+
 
 // document.addEventListener('mousemove', (event) => {
 // 	console.log(event.clientX, event.clientY);
