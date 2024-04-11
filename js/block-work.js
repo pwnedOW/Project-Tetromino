@@ -4,7 +4,7 @@ import BLOCKS from './blocks.js'
 const innerDisplay = document.querySelector('.inner-display > ul');
 const gameText = document.querySelector('.game-text');
 const scoreDisplay = document.querySelector('.score');
-const restartButton = document.querySelector('.game-text > button');
+const restartButton = document.querySelector('.game-text > .restart');
 
 // setting
 const GAME_ROWS = 25;
@@ -201,8 +201,8 @@ function seizeBlock(){
     const movingBlocks = document.querySelectorAll('.moving');
     movingBlocks.forEach(moving => {
         moving.classList.remove("moving");
-        moving.classList.add("seized");
         moving.classList.add('wave');
+        moving.classList.add("seized");
     })
     checkMatch();
 }
@@ -353,3 +353,39 @@ restartButton.addEventListener('click', ()=>{
     replay = true;
     init()
 })
+
+window.addEventListener("keydown", function(e) {
+    // 스페이스바, 방향키로 페이지 스크롤되는 경우 방지
+    if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+        e.preventDefault();
+    }
+}, false);
+
+document.querySelector('.arrow-up').addEventListener('click', (e)=>{
+    changeDirection();
+})
+document.querySelector('.arrow-down').addEventListener('click', (e)=>{
+    moveBlock('top', 1);
+})
+document.querySelector('.arrow-left').addEventListener('click', (e)=>{
+    moveBlock('left', -1);
+})
+document.querySelector('.arrow-right').addEventListener('click', (e)=>{
+    moveBlock('left', 1);
+})
+document.querySelector('.buttonA').addEventListener('click', (e)=>{
+    changeDirection();
+})
+document.querySelector('.buttonB').addEventListener('click', (e)=>{
+    dropBlock();
+})
+document.querySelector('.start').addEventListener('click', (e)=>{
+    innerDisplay.innerHTML = '';
+    gameText.style.display = "none"
+    replay = true;
+    init();
+})
+
+// document.addEventListener('mousemove', (event) => {
+// 	console.log(event.clientX, event.clientY);
+// });

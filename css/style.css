@@ -1,9 +1,103 @@
 * {
     margin: 0;
     padding: 0;
-    
+    box-sizing: border-box;
 }
 
+body {
+    background-color: #BAB6B3;
+}
+
+.container {
+    width: 960px;
+    height: 960px;
+    background-image: url(../image/Gameboy2\ cropped\ 960x960.png);
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border: none;
+    justify-content: center;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+/* ㅡㅡㅡㅡㅡㅡㅡㅡㅡarrow zoneㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+.arrow {
+    width: 44px;
+    height: 44px;
+    opacity: 100;
+    /* 추후 opacity 넣을것 */
+}
+.arrow-up {
+    position: relative;
+    left: 300px;
+    top: 86px;
+}
+.arrow-down {
+    position: relative;
+    left: 250px;
+    top: 175px;
+}
+.arrow-left {
+    position: relative;
+    left: 156px;
+    top: 130px;
+}
+.arrow-right {
+    position: relative;
+    left: 194px;
+    top: 130px;
+}
+/* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+
+
+
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡA,B button zoneㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+.buttonA {
+    border-radius: 36px;
+    width: 68px;
+    height: 68px;
+    position: relative;
+    left: 442px;
+    top: 104px;
+}
+
+.buttonB {
+    border-radius: 36px;
+    width: 68px;
+    height: 68px;
+    position: relative;
+    left: 280px;
+    top: 144px;
+}
+/* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+
+
+
+/*ㅡㅡㅡㅡㅡㅡselect, start button zoneㅡㅡㅡㅡㅡㅡㅡ*/
+.select{
+    border-radius: 30px;
+    width: 80px;
+    height: 30px;
+    position: relative;
+    left: 18px;
+    top: 260px;
+    transform: rotate(334deg);
+}
+
+.start{
+    border-radius: 30px;
+    width: 80px;
+    height: 30px;
+    position: relative;
+    left: 24px;
+    top: 260px;
+    transform: rotate(334deg);
+}
+/* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
 div > span {
     font-family: "DotGothic16", sans-serif;
     font-weight: 400;
@@ -14,11 +108,6 @@ ul {
     list-style: none;
 }
 
-body {
-    height: 100%;
-    overflow: hidden;
-}
-
 .game-text {
     display: flex;
     justify-content: center;
@@ -27,7 +116,7 @@ body {
     position: fixed;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.3);
+    /* background: rgba(0,0,0,0.3); */
     left: 0;
     top: 0;
     color: #fff;
@@ -50,19 +139,32 @@ body {
     font-size: 2em;
 }
 
+.upper-body { 
+    width: 100%;
+    height: 50%;
+}
+
+.lower-body {
+    width: 100%;
+    height: 50%;
+}
+
 .display-container {
     flex-wrap: wrap;
-    background-color: #837B3A;
-    border: 1px solid #333;
-    width: 370px;
-    height: 338px;
+    background-color: #6A801C;
+    border: 2px solid black;
+    width: 28%;
+    height: 52%;
     margin: 0 auto;
+    margin-top: 163px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .side-display {
+    position: relative;
+    left: 20px;
     display: flex;
     flex-wrap: wrap;
     width: 110px;
@@ -70,15 +172,15 @@ body {
 }
 
 .inner-display > ul {
-    background-color: #837B3A;
+    background-color: #6A801C;
     border: 2px solid #333;
-    width: 120px;
-    height: 325px;
+    width: 100px;
+    height: 230px;
 }
 
 .inner-display > ul > li {
     width: 100%;
-    height: 13px;
+    height: 9px;
 }
 
 .inner-display > ul > li > ul {
@@ -87,8 +189,8 @@ body {
 
 .inner-display > ul > li > ul > li {
     margin: 1px;
-    width: 12px;
-    height: 12px;
+    width: 8px;
+    height: 8px;
     /* outline: 1px solid #34280E; */
 }
 
@@ -141,13 +243,6 @@ body {
     background: black;
 }
 
-
-@keyframes bomb {
-    50% {
-        opacity: 0;
-        width: 50%;
-    }
-}
 
 .wave {
     animation-name: wave;
