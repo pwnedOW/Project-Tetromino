@@ -1,6 +1,13 @@
 * {
     margin: 0;
     padding: 0;
+    
+}
+
+div > span {
+    font-family: "DotGothic16", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 ul {
@@ -10,6 +17,12 @@ ul {
 body {
     height: 100%;
     overflow: hidden;
+}
+
+.outer-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .game-text {
@@ -42,6 +55,7 @@ body {
 }
 
 .inner-display > ul {
+    background-color: #837B3A;
     border: 1px solid #333;
     width: 150px;
     margin: 0 auto;
@@ -57,12 +71,14 @@ body {
 }
 
 .inner-display > ul > li > ul > li {
-    width: 15px;
-    height: 15px;
-    outline: 1px solid lightgray;
+    margin: 1px;
+    width: 14px;
+    height: 14px;
+    /* outline: 1px solid #34280E; */
 }
 
 .nextbox {
+    font-size: 32px;
     width: 75px;
     height: 45px;
     align-items: center;
@@ -80,31 +96,32 @@ body {
 }
 
 .nextbox > ul > li > ul > li {
-    width: 15px;
-    height: 15px;
-    outline: 1px solid lightgray;
+    margin: 1px;
+    width: 14px;
+    height: 14px;
+    /* outline: 1px solid #34280E; */
 }
 
 .tree {
-    background: #67c23a;
+    background: black;
 }
 .square {
-    background: #2c82c9;
+    background: black;
 }
 .bar {
-    background: salmon;
+    background: black;
 }
 .zee {
-    background: #e6a23c;
+    background: black;
 }
 .see {
-    background: #46c346;
+    background: black;
 }
 .elLeft {
-    background: #8e44ad;
+    background: black;
 }
 .elRight {
-    background: #16a085;
+    background: black;
 }
 
 
