@@ -6,6 +6,7 @@ const gameText = document.querySelector('.game-text');
 const scoreDisplay = document.querySelector('.score');
 const startButton = document.querySelector('.start');
 const displayContainer = document.querySelector('.display-container');
+const nextbox = document.querySelector('.nextbox > ul');
 const powerButton = document.querySelector('.power-button');
 
 // setting
@@ -29,8 +30,7 @@ const movingItem = {
     left: 4,
 }
 
-//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡver1.01 추가본ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-const nextbox = document.querySelector('.nextbox > ul');
+
 
 const BLOCKBOX = [
     ['tree', [[3,1],[1,1],[2,0],[2,1]]],
@@ -42,18 +42,17 @@ const BLOCKBOX = [
     ['elRight', [[1,1],[2,1],[3,1],[3,0]]]
 ]
 
-const blockToNumber = {
-    'tree': 0,
-    'square': 1,
-    'bar': 2,
-    'zee': 3,
-    'see': 4,
-    'elLeft': 5,
-    'elRight': 6
-}
+// const blockToNumber = {
+//     'tree': 0,
+//     'square': 1,
+//     'bar': 2,
+//     'zee': 3,
+//     'see': 4,
+//     'elLeft': 5,
+//     'elRight': 6
+// }
 
 let randomBox = [0,1,2,3,4,5,6]
-//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
 init()
 
@@ -118,6 +117,7 @@ function generateNewBlock(){
         moveBlock('top', 1)
     }, duration)
 
+    startButton.focus();
     const blockArray = Object.entries(BLOCKS);
     movingItem.type = blockArray[nextBlock][0]
     nextBlock = randomDecide();
@@ -177,7 +177,7 @@ function renderBlocks(moveType=''){
         movingBlocks.forEach(moving => {
             moving.classList.remove(type, "moving");
         })
-        for(var i=0; i<4; i++){
+        for(let i=0; i<4; i++){
             innerDisplay.childNodes[arr[i][1]].childNodes[0].childNodes[arr[i][0]].classList.add(type,'moving');
         }
         movingItem.left = left;
@@ -190,7 +190,6 @@ function renderBlocks(moveType=''){
             gameover = true;
             showGameoverText();
             startButton.classList.add('blink');
-            startButton.focus();
             return true;
         }
         
@@ -209,6 +208,7 @@ function seizeBlock(){
         moving.classList.remove("moving");
         moving.classList.add('wave');
         moving.classList.add("seized");
+        console.log('seize됨')
     })
     checkMatch();
 }
@@ -313,7 +313,7 @@ function dropBlock(){
     clearInterval(downInterval);
     downInterval = setInterval(()=>{
         moveBlock('top', 1)
-    }, 10)
+    }, 8)
 }
 function showGameoverText(){
     gameText.style.display = 'flex'
@@ -321,9 +321,15 @@ function showGameoverText(){
 
 // event handling
 document.addEventListener('keyup', e =>{
-    if(!gameover){
+    if(gameover){
         switch(e.keyCode){
             default:
+                break;
+            case 82: // r
+                innerDisplay.innerHTML = '';
+                gameText.style.display = "none"
+                replay = true;
+                init();
                 break;
         }
     }
@@ -347,13 +353,13 @@ document.addEventListener('keydown', e =>{
             case 90: // z
                 changeDirection();
                 break;
-            case 88: // x
+            case 67: // c
                 dropBlock();
                 break;
-            case 32:
+            case 32: // 스페이스 바
                 dropBlock();
                 break;
-            case 13:
+            case 82: // r
                 innerDisplay.innerHTML = '';
                 gameText.style.display = "none"
                 replay = true;
@@ -402,20 +408,25 @@ document.querySelector('.buttonB').addEventListener('click', (e)=>{
         dropBlock();
     }
 })
+document.querySelector('.keyinfo-btn').addEventListener('click', (e)=>{
+    let speechBubble = document.querySelector('.speech-bubble')
+    speechBubble.classList.toggle('power-toggle');
+    speechBubble.classList.add('wave');
+})
 document.querySelector('.select').addEventListener('click', (e)=>{
     displayContainer.requestFullscreen();
 })
 startButton.addEventListener('click', (e)=>{
     innerDisplay.innerHTML = '';
-    gameText.style.display = "none"
+    gameText.style.display = "none";
     replay = true;
     init();
 })
 powerButton.addEventListener('click', (e)=>{
     document.querySelector('.battery-LED').classList.toggle('power-toggle');
     document.querySelector('.off-switch').classList.toggle('power-toggle');
-    document.querySelector('.on-hider').classList.toggle('power-toggle')
-    document.querySelector('.click-alert').style.display = 'none'
+    document.querySelector('.on-hider').classList.toggle('power-toggle');
+    document.querySelector('.click-alert').style.display = 'none';
     displayContainer.classList.toggle('power-toggle');
     displayContainer.classList.toggle('wave');
     innerDisplay.innerHTML = '';
