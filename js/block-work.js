@@ -21,7 +21,7 @@ let tempMovingItem;
 let gameover = false;
 let nextBlock;
 let replay = false;
-
+let randomBox = [0, 1, 2, 3, 4, 5, 6];
 
 const movingItem = {
     type: '',
@@ -30,34 +30,20 @@ const movingItem = {
     left: 4,
 }
 
-
-
 const BLOCKBOX = [
-    ['tree', [[3,1],[1,1],[2,0],[2,1]]],
-    ['square', [[1,0],[1,1],[2,0],[2,1]]],
-    ['bar', [[1,1],[2,1],[3,1],[4,1]]],
-    ['zee', [[1,0],[2,0],[2,1],[3,1]]],
-    ['see', [[3,0],[2,0],[2,1],[1,1]]],
-    ['elLeft', [[1,0],[1,1],[2,1],[3,1]]],
-    ['elRight', [[1,1],[2,1],[3,1],[3,0]]]
+    ['tree', [[3, 1], [1, 1], [2, 0], [2, 1]]],
+    ['square', [[1, 0], [1, 1], [2, 0], [2, 1]]],
+    ['bar', [[1, 1], [2, 1], [3, 1], [4, 1]]],
+    ['zee', [[1, 0], [2, 0], [2, 1], [3, 1]]],
+    ['see', [[3, 0], [2, 0], [2, 1], [1, 1]]],
+    ['elLeft', [[1, 0], [1, 1], [2, 1], [3, 1]]],
+    ['elRight', [[1, 1], [2, 1], [3, 1], [3, 0]]]
 ]
 
-// const blockToNumber = {
-//     'tree': 0,
-//     'square': 1,
-//     'bar': 2,
-//     'zee': 3,
-//     'see': 4,
-//     'elLeft': 5,
-//     'elRight': 6
-// }
-
-let randomBox = [0,1,2,3,4,5,6]
-
-init()
+init();
 
 // functions
-function init(){
+function init() {
     gameText.style.display = "none"
     startButton.classList.remove('blink')
     gameover = false;
@@ -67,13 +53,13 @@ function init(){
     for (let i = 0; i < GAME_ROWS; i++) {
         prependNewLine()
     }
-    if(replay) {
+    if (replay) {
         const movingBlocks = document.querySelectorAll('.next');
         movingBlocks.forEach(express => {
-            express.classList.remove(BLOCKBOX[nextBlock][0],'next');
+            express.classList.remove(BLOCKBOX[nextBlock][0], 'next');
         })
     } else {
-        for(let i=0; i<2; i++){
+        for (let i = 0; i < 2; i++) {
             prependBox(nextbox);
         }
     }
@@ -81,8 +67,8 @@ function init(){
     BLOCKBOX[nextBlock][1].some(block => {
         const x = block[0];
         const y = block[1];
-        for (let i=0; i<4; i++){
-        nextbox.childNodes[y].childNodes[0].childNodes[x].classList.add(BLOCKBOX[nextBlock][0], 'next');
+        for (let i = 0; i < 4; i++) {
+            nextbox.childNodes[y].childNodes[0].childNodes[x].classList.add(BLOCKBOX[nextBlock][0], 'next');
         }
     })
     generateNewBlock();
@@ -91,7 +77,7 @@ function init(){
 function prependBox(obj) {
     const li = document.createElement('li');
     const ul = document.createElement('ul');
-    for(let j = 0; j < 5; j++){
+    for (let j = 0; j < 5; j++) {
         const matrix = document.createElement('li');
         ul.prepend(matrix);
     }
@@ -99,32 +85,31 @@ function prependBox(obj) {
     obj.prepend(li);
 }
 
-function prependNewLine(){
+function prependNewLine() {
     const li = document.createElement('li');
     const ul = document.createElement('ul');
-    for(let j = 0; j < GAME_COLS; j++){
+    for (let j = 0; j < GAME_COLS; j++) {
         const matrix = document.createElement('li');
         ul.prepend(matrix);
     }
-        li.prepend(ul);
-        innerDisplay.prepend(li);
+    li.prepend(ul);
+    innerDisplay.prepend(li);
 }
 
-function generateNewBlock(){
+function generateNewBlock() {
 
     clearInterval(downInterval);
-    downInterval = setInterval(()=>{
+    downInterval = setInterval(() => {
         moveBlock('top', 1)
     }, duration)
 
-    startButton.focus();
     const blockArray = Object.entries(BLOCKS);
     movingItem.type = blockArray[nextBlock][0]
     nextBlock = randomDecide();
     movingItem.top = 0;
     movingItem.left = 4;
     movingItem.direction = 0;
-    tempMovingItem = {...movingItem};
+    tempMovingItem = { ...movingItem };
     const movingBlocks = document.querySelectorAll('.next');
     movingBlocks.forEach(express => {
         express.classList.remove(movingItem.type, 'next');
@@ -132,16 +117,16 @@ function generateNewBlock(){
     BLOCKBOX[nextBlock][1].some(block => {
         const x = block[0];
         const y = block[1];
-        for(let i=0; i<4; i++){
+        for (let i = 0; i < 4; i++) {
             nextbox.childNodes[y].childNodes[0].childNodes[x].classList.add(BLOCKBOX[nextBlock][0], 'next');
         }
     })
     renderBlocks()
 }
 
-function randomDecide(){
-    if(randomBox.length < 1){
-        for(let i=0; i<7; i++){
+function randomDecide() {
+    if (randomBox.length < 1) {
+        for (let i = 0; i < 7; i++) {
             randomBox.push(i);
         }
     }
@@ -151,155 +136,155 @@ function randomDecide(){
     return ans;
 }
 
-function checkEmpty(target){
-    if(!target || target.classList.contains('seized')){
+function checkEmpty(target) {
+    if (!target || target.classList.contains('seized')) {
         return false;
     }
     return true;
 }
 
-function renderBlocks(moveType=''){
+function renderBlocks(moveType = '') {
     let possible = true;
     const { type, direction, top, left } = tempMovingItem;
     const arr = [];
-    BLOCKS[type][direction].some(block=>{
+    BLOCKS[type][direction].some(block => {
         const x = block[0] + left;
         const y = block[1] + top;
         const target = innerDisplay.childNodes[y] ? innerDisplay.childNodes[y].childNodes[0].childNodes[x] : null;
         const isAvailable = checkEmpty(target);
-        arr.push([x,y]);
-        if(!isAvailable) {
-            possible=false;
+        arr.push([x, y]);
+        if (!isAvailable) {
+            possible = false;
         }
     })
-    if(possible){
+    if (possible) {
         const movingBlocks = document.querySelectorAll('.moving');
         movingBlocks.forEach(moving => {
             moving.classList.remove(type, "moving");
         })
-        for(let i=0; i<4; i++){
-            innerDisplay.childNodes[arr[i][1]].childNodes[0].childNodes[arr[i][0]].classList.add(type,'moving');
+        for (let i = 0; i < 4; i++) {
+            innerDisplay.childNodes[arr[i][1]].childNodes[0].childNodes[arr[i][0]].classList.add(type, 'moving');
         }
         movingItem.left = left;
         movingItem.top = top;
         movingItem.direction = direction;
     } else {
         tempMovingItem = { ...movingItem }
-        if(moveType ==='retry'){
+        if (moveType === 'retry') {
             clearInterval(downInterval);
             gameover = true;
             showGameoverText();
             startButton.classList.add('blink');
             return true;
         }
-        
-        if(moveType ==="top"){
+
+        if (moveType === "top") {
             seizeBlock();
         }
+
         renderBlocks('retry');
-    
+
         return true;
     }
 }
 
-function seizeBlock(){
+function seizeBlock() {
     const movingBlocks = document.querySelectorAll('.moving');
     movingBlocks.forEach(moving => {
         moving.classList.remove("moving");
         moving.classList.add('wave');
         moving.classList.add("seized");
-        console.log('seize됨')
     })
     checkMatch();
 }
-function checkMatch(){
+function checkMatch() {
     let bonus = 0;
     const childNodes = innerDisplay.childNodes;
-    childNodes.forEach(child=>{
+    childNodes.forEach(child => {
         let matched = true;
-        child.children[0].childNodes.forEach(li=>{
-            if(!li.classList.contains('seized')){
+        child.children[0].childNodes.forEach(li => {
+            if (!li.classList.contains('seized')) {
                 matched = false;
             }
         })
-        if(matched){
+        if (matched) {
             child.remove();
-            prependNewLine()
+            prependNewLine();
             bonus++;
         }
     })
-    if(bonus > 0){
-        score += bonus**2*10;
+    if (bonus > 0) {
+        score += bonus ** 2 * 10;
         scoreDisplay.innerText = score;
     }
 
     generateNewBlock()
 }
 
-function moveBlock(moveType, amount){
+function moveBlock(moveType, amount) {
     tempMovingItem[moveType] += amount;
     renderBlocks(moveType);
 }
-function changeDirection(){
+function changeDirection() {
     const direction = tempMovingItem.direction;
     const left = tempMovingItem.left;
     const type = tempMovingItem.type;
-    direction === 3 ? tempMovingItem.direction =0 : tempMovingItem.direction += 1;
-    switch (type){
+    direction === 3 ? tempMovingItem.direction = 0 : tempMovingItem.direction += 1;
+    switch (type) {
         case 'tree':
-            if(left == -1 && direction ==3){
+            if (left == -1 && direction == 3) {
                 tempMovingItem.left++;
                 break;
             }
-            if(left == 8 && direction == 1){
+            if (left == 8 && direction == 1) {
                 tempMovingItem.left--;
                 break;
             }
             break;
         case 'bar':
-            if(direction % 2 == 1){
-                if(left == -2){
+            if (direction % 2 == 1) {
+                if (left == -2) {
                     tempMovingItem.left += 2;
                     break;
                 }
-                if(left == -1){
+                if (left == -1) {
                     tempMovingItem.left++;
                     break;
                 }
-                if(left == 7){
+                if (left == 7) {
                     tempMovingItem.left--;
                     break;
                 }
             }
             break;
         case 'zee':
-            if(left == 8 && direction %2 == 1){
+            if (left == 8 && direction % 2 == 1) {
                 tempMovingItem.left--;
                 break;
             }
             break;
         case 'see':
-            if(left == 8 && direction %2 == 1){
+            if (left == 8 && direction % 2 == 1) {
                 tempMovingItem.left--;
                 break;
             }
             break;
         case 'elLeft':
-            if(left == -1 && direction == 3){
+            if (left == -1 && direction == 3) {
                 tempMovingItem.left++;
                 break;
             }
-            if(left == 8 && direction == 1){
+            if (left == 8 && direction == 1) {
                 tempMovingItem.left--;
                 break;
             }
             break;
         case 'elRight':
-            if(left == -1 && direction == 3){
+            if (left == -1 && direction == 3) {
                 tempMovingItem.left++;
                 break;
             }
-            if(left == 8 && direction == 1){
+            if (left == 8 && direction == 1) {
                 tempMovingItem.left--;
                 break;
             }
@@ -309,35 +294,20 @@ function changeDirection(){
     }
     renderBlocks()
 }
-function dropBlock(){
+function dropBlock() {
     clearInterval(downInterval);
-    downInterval = setInterval(()=>{
+    downInterval = setInterval(() => {
         moveBlock('top', 1)
-    }, 8)
+    }, 10)
 }
-function showGameoverText(){
+function showGameoverText() {
     gameText.style.display = 'flex'
 }
 
 // event handling
-document.addEventListener('keyup', e =>{
-    if(gameover){
-        switch(e.keyCode){
-            default:
-                break;
-            case 82: // r
-                innerDisplay.innerHTML = '';
-                gameText.style.display = "none"
-                replay = true;
-                init();
-                break;
-        }
-    }
-})
-
-document.addEventListener('keydown', e =>{
-    if (!gameover){
-        switch(e. keyCode){
+document.addEventListener('keydown', e => {
+    if (!gameover) {
+        switch (e.keyCode) {
             case 39: // 오른쪽 화살표
                 moveBlock("left", 1);
                 break;
@@ -369,66 +339,81 @@ document.addEventListener('keydown', e =>{
                 break;
         }
     }
+    if (gameover) {
+        switch (e.keyCode) {
+            case 82: // r
+                innerDisplay.innerHTML = '';
+                gameText.style.display = "none"
+                replay = true;
+                init();
+                break;
+            default:
+                break;
+        }
+    }
 })
 
-window.addEventListener("keydown", function(e) {
-    // 스페이스바, 방향키로 페이지 스크롤되는 경우 방지
-    if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+window.addEventListener("keydown", (e) => {
+    if ([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
         e.preventDefault();
     }
 }, false);
 
-document.querySelector('.arrow-up').addEventListener('click', (e)=>{
-    if (!gameover){
+document.querySelector('.arrow-up').addEventListener('click', (e) => {
+    if (!gameover) {
         changeDirection();
     }
 })
-document.querySelector('.arrow-down').addEventListener('click', (e)=>{
-    if (!gameover){
+document.querySelector('.arrow-down').addEventListener('click', (e) => {
+    if (!gameover) {
         moveBlock('top', 1);
     }
 })
-document.querySelector('.arrow-left').addEventListener('click', (e)=>{
-    if (!gameover){
+document.querySelector('.arrow-left').addEventListener('click', (e) => {
+    if (!gameover) {
         moveBlock('left', -1);
     }
 })
-document.querySelector('.arrow-right').addEventListener('click', (e)=>{
-    if (!gameover){
+document.querySelector('.arrow-right').addEventListener('click', (e) => {
+    if (!gameover) {
         moveBlock('left', 1);
     }
 })
-document.querySelector('.buttonA').addEventListener('click', (e)=>{
-    if (!gameover){
+document.querySelector('.buttonA').addEventListener('click', (e) => {
+    if (!gameover) {
         changeDirection();
     }
 })
-document.querySelector('.buttonB').addEventListener('click', (e)=>{
-    if (!gameover){
+document.querySelector('.buttonB').addEventListener('click', (e) => {
+    if (!gameover) {
         dropBlock();
     }
 })
-document.querySelector('.keyinfo-btn').addEventListener('click', (e)=>{
+document.querySelector('.keyinfo-btn').addEventListener('click', (e) => {
     let speechBubble = document.querySelector('.speech-bubble')
-    speechBubble.classList.toggle('power-toggle');
-    speechBubble.classList.add('wave');
+    speechBubble.classList.toggle('invisible');
+    speechBubble.classList.add('power-on');
 })
-document.querySelector('.select').addEventListener('click', (e)=>{
+document.querySelector('.select').addEventListener('click', (e) => {
     displayContainer.requestFullscreen();
+    if(displayContainer.requestFullscreen()) {
+    innerDisplay.style.width = '480px';
+    innerDisplay.style.height = '960px';
+    }
 })
-startButton.addEventListener('click', (e)=>{
+startButton.addEventListener('click', (e) => {
     innerDisplay.innerHTML = '';
     gameText.style.display = "none";
     replay = true;
     init();
 })
-powerButton.addEventListener('click', (e)=>{
-    document.querySelector('.battery-LED').classList.toggle('power-toggle');
-    document.querySelector('.off-switch').classList.toggle('power-toggle');
-    document.querySelector('.on-hider').classList.toggle('power-toggle');
+powerButton.addEventListener('click', (e) => {
+    document.querySelector('.battery-LED').classList.toggle('invisible');
+    document.querySelector('.off-switch').classList.toggle('invisible');
+    document.querySelector('.on-hider').classList.toggle('invisible');
     document.querySelector('.click-alert').style.display = 'none';
-    displayContainer.classList.toggle('power-toggle');
-    displayContainer.classList.toggle('wave');
+    displayContainer.classList.toggle('invisible');
+    displayContainer.classList.toggle('power-on');
     innerDisplay.innerHTML = '';
     gameText.style.display = "none";
     replay = true;

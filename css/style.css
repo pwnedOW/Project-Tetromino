@@ -4,12 +4,6 @@
     box-sizing: border-box;
 }
 
-@media screen and (max-width:900px) {
-    .container {
-        width: 100%;    
-    }
-}
-
 @font-face {
     font-family: "Early GameBoy";
     src: url(../font/Early\ GameBoy.ttf) format("truetype");
@@ -35,27 +29,29 @@ body {
 }
 
 .container {
-    width: 960px;
+    width: 576px;
     height: 960px;
-    background-image: url(../image/Gameboy2\ cropped\ 960x960.png);
+    background-image: url(../image/Gameboy2\ cropped\ 576x960.png);
     margin: auto;
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
     border: none;
     justify-content: center;
 }
 
-.btn {
+.invisible {
     opacity: 0;
 }
-.btn-visible {
-    text-align: center;
-    opacity: 1;
-    font-family: Quicksand-Regular;
-    font-size: 15px;
+.btn-invisible {
+    opacity: 0;
 }
-.btn:hover {
+.btn-invisible:hover {
+    cursor: pointer;
+}
+.btn-visible {
+    opacity: 1;
+}
+.btn-visible:hover {
     cursor: pointer;
 }
 
@@ -66,22 +62,22 @@ body {
 }
 .arrow-up {
     position: relative;
-    left: 300px;
+    left: 108px;
     top: 86px;
 }
 .arrow-down {
     position: relative;
-    left: 250px;
+    left: 59px;
     top: 175px;
 }
 .arrow-left {
     position: relative;
-    left: 156px;
+    left: -36px;
     top: 130px;
 }
 .arrow-right {
     position: relative;
-    left: 194px;
+    left: 3px;
     top: 130px;
 }
 /* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
@@ -94,7 +90,7 @@ body {
     width: 68px;
     height: 68px;
     position: relative;
-    left: 442px;
+    left: 250px;
     top: 104px;
 }
 
@@ -103,7 +99,7 @@ body {
     width: 68px;
     height: 68px;
     position: relative;
-    left: 280px;
+    left: 88px;
     top: 144px;
 }
 /* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
@@ -113,11 +109,11 @@ body {
 /*ㅡㅡㅡㅡㅡselect, start, power button zoneㅡㅡㅡㅡㅡ*/
 .select{
     border-radius: 30px;
-    width: 80px;
-    height: 30px;
+    width: 64px;
+    height: 16px;
     position: relative;
-    left: 18px;
-    top: 260px;
+    left: -163px;
+    top: 262px;
     transform: rotate(334deg);
 }
 
@@ -126,7 +122,7 @@ body {
     width: 64px;
     height: 16px;
     position: relative;
-    left: 33px;
+    left: -143px;
     top: 260px;
     transform: rotate(334deg);
     background-color: #5e5c5f;
@@ -143,7 +139,7 @@ body {
 .power-button {
     position: relative;
     top: 56px;
-    left: 34px;
+    left: 82px;
     width: 104px;
     height: 24px;
     border-radius: 30px;
@@ -181,7 +177,7 @@ ul {
 }
 
 .upper-body { 
-    width: 50%;
+    width: 100%;
     height: 50%;
 }
 
@@ -208,7 +204,7 @@ ul {
     left: 10px;
     display: flex;
     flex-wrap: wrap;
-    width: 110px;
+    width: 45%;
     height: 100%;
 }
 
@@ -219,24 +215,25 @@ ul {
 .inner-display > ul {
     background-color: #6A801C;
     border: 2px solid black;
-    width: 120px;
+    width: 124px;
     height: 244px;
 }
 
 .inner-display > ul > li {
     width: 100%;
-    height: 12px;
+    height: 5%;
 }
 
 .inner-display > ul > li > ul {
+    height: 100%;
     display: flex;
 }
 
 .inner-display > ul > li > ul > li {
-    margin: 1px;
-    width: 11px;
-    height: 10px;
-    /* outline: 1px solid #34280E; */
+    /* margin: 1px; */
+    width: 100%;
+    height: 100%;
+    border: 1px solid #6A801C;
 }
 
 .nextbox {
@@ -248,20 +245,31 @@ ul {
     align-content: center;
 }
 
-.nextbox > ul > li {
+.nextbox > ul {
     width: 100%;
+    height: 30%;
+}
+
+.nextbox > ul > li {
+    position: relative;
+    top: 10px;
+    left: 24px;
+    width: 55%;
+    height: 35%;
 }
 
 .nextbox > ul > li > ul {
     display: flex;
     text-align: center;
     justify-content: center;
+    width: 100%;
+    height: 100%;
 }
 
 .nextbox > ul > li > ul > li {
+    width: 100%;
+    height: 100%;
     border: 1px solid #6A801C;
-    width: 12px;
-    height: 12px;
     /* outline: 1px solid #34280E; */
 }
 
@@ -287,25 +295,33 @@ ul {
     background: black;
 }
 
-
 .wave {
     animation-name: wave;
-    animation-duration: 0.5s;
-    animation-delay: 0s;
+    animation-duration: 300ms;
+    animation-delay: 50ms;
     animation-iteration-count: 1;
     animation-timing-function: linear;
     animation-direction: alternate;
-    transition: 0.5s;
+    /* transition: 0.5s; */
 }
 
-.power-toggle {
-    opacity: 0%;
+@keyframes wave {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.power-on {
+    transition: 0.5s;
 }
 
 .battery-LED {
     border-radius: 60px;
     position: absolute;
-    transform: translate(39px,238px);
+    transform: translate(87px,238px);
     width: 19px;
     height: 19px;
     background-color: #323233;
@@ -313,7 +329,7 @@ ul {
 
 .off-switch {
     position: absolute;
-    transform: translate(39px,30px);
+    transform: translate(87px,30px);
     width: 16px;
     height: 16px;
     border-radius: 60px;
@@ -322,7 +338,7 @@ ul {
 
 .off-hider {
     position: absolute;
-    transform: translate(39px,38px);
+    transform: translate(87px,38px);
     width: 16px;
     height: 8px;
     background-color: #565756;
@@ -330,7 +346,7 @@ ul {
 
 .on-hider {
     position: absolute;
-    transform: translate(62px,30px);
+    transform: translate(110px,30px);
     width: 18px;
     height: 8px;
     background-color: #BAB6B3;
@@ -340,16 +356,19 @@ ul {
     color: #555555;
     opacity: 0;
     position: absolute;
-    transform: translate(140px,56px);
+    transform: translate(188px,56px);
     font-weight: bold;
     animation: blink-effect 1s step-end infinite;
 }
 
 .keyinfo-btn {
+    text-align: center;
     font-weight: bold;
     color: #636363;
+    font-family: Quicksand-Regular;
+    font-size: 15px;
     background-color: #8C8B89;
-    border: 0px;
+    border: none;
     width: 104px;
     height: 20px;
     border-radius: 30px;
@@ -359,7 +378,7 @@ ul {
 
 .speech-bubble {
     padding: 20px;
-    color: white;
+    color: #BAB6B3;
     width: 200px;
     height: 170px;
 	position: absolute;
@@ -380,15 +399,4 @@ ul {
 	border-left: 0;
 	margin-left: -0.625em;
 	margin-top: -0.625em;
-}
-
-.layer-popup {
-    display: none;
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 100;
 }
