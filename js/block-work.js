@@ -9,6 +9,7 @@ const displayContainer = document.querySelector('.display-container');
 const nextbox = document.querySelector('.nextbox > ul');
 const powerButton = document.querySelector('.power-button');
 
+
 // setting
 const GAME_ROWS = 20;
 const GAME_COLS = 10;
@@ -27,7 +28,7 @@ const movingItem = {
     type: '',
     direction: 0,
     top: 0,
-    left: 4,
+    left: 0
 }
 
 const BLOCKBOX = [
@@ -409,6 +410,7 @@ startButton.addEventListener('click', (e) => {
 })
 powerButton.addEventListener('click', (e) => {
     document.querySelector('.battery-LED').classList.toggle('invisible');
+    document.querySelector('.battery-LED').classList.toggle('power-on');
     document.querySelector('.off-switch').classList.toggle('invisible');
     document.querySelector('.on-hider').classList.toggle('invisible');
     document.querySelector('.click-alert').style.display = 'none';

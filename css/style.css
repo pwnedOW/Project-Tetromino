@@ -298,7 +298,7 @@ ul {
 .wave {
     animation-name: wave;
     animation-duration: 300ms;
-    animation-delay: 50ms;
+    animation-delay: 0s;
     animation-iteration-count: 1;
     animation-timing-function: linear;
     animation-direction: alternate;
@@ -321,7 +321,7 @@ ul {
 .battery-LED {
     border-radius: 60px;
     position: absolute;
-    transform: translate(87px,238px);
+    transform: translate(86px,238px);
     width: 19px;
     height: 19px;
     background-color: #323233;
