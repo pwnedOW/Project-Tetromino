@@ -41,9 +41,11 @@ body {
 
 .invisible {
     opacity: 0;
+    outline: none;
 }
 .btn-invisible {
     opacity: 0;
+    outline: none;
 }
 .btn-invisible:hover {
     cursor: pointer;
@@ -63,21 +65,21 @@ body {
 .arrow-up {
     position: relative;
     left: 108px;
-    top: 86px;
+    top: 85px;
 }
 .arrow-down {
     position: relative;
-    left: 59px;
-    top: 175px;
+    left: 58px;
+    top: 176px;
 }
 .arrow-left {
     position: relative;
-    left: -36px;
+    left: -37px;
     top: 130px;
 }
 .arrow-right {
     position: relative;
-    left: 3px;
+    left: 4px;
     top: 130px;
 }
 /* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
@@ -147,6 +149,48 @@ body {
 /* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
 
 
+
+/* ㅡㅡㅡㅡㅡㅡㅡㅡㅡkey info zoneㅡㅡㅡㅡㅡㅡㅡㅡ */
+.keyinfo-btn {
+    text-align: center;
+    font-weight: bold;
+    color: #636363;
+    font-family: Quicksand-Regular;
+    font-size: 15px;
+    background-color: #8C8B89;
+    border: none;
+    width: 104px;
+    height: 20px;
+    border-radius: 30px;
+    position: absolute;
+    transform: translate(154px, 58px);
+}
+
+.speech-bubble {
+    padding: 20px;
+    color: #BAB6B3;
+    width: 200px;
+    height: 170px;
+	position: absolute;
+    transform: translate(400px,40px);
+	background: #565756;
+	border-radius: 15px;
+}
+
+.speech-bubble:after {
+	content: '';
+	position: absolute;
+	top: 20%;
+	left: 0;
+	width: 0;
+	height: 0;
+	border: 0.625em solid transparent;
+	border-right-color: #565756;
+	border-left: 0;
+	margin-left: -0.625em;
+	margin-top: -0.625em;
+}
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
 
 div > span {
     font-family: "Early GameBoy";
@@ -270,7 +314,6 @@ ul {
     width: 100%;
     height: 100%;
     border: 1px solid #6A801C;
-    /* outline: 1px solid #34280E; */
 }
 
 .tree {
@@ -359,44 +402,4 @@ ul {
     transform: translate(188px,56px);
     font-weight: bold;
     animation: blink-effect 1s step-end infinite;
-}
-
-.keyinfo-btn {
-    text-align: center;
-    font-weight: bold;
-    color: #636363;
-    font-family: Quicksand-Regular;
-    font-size: 15px;
-    background-color: #8C8B89;
-    border: none;
-    width: 104px;
-    height: 20px;
-    border-radius: 30px;
-    position: absolute;
-    transform: translate(154px, 58px);
-}
-
-.speech-bubble {
-    padding: 20px;
-    color: #BAB6B3;
-    width: 200px;
-    height: 170px;
-	position: absolute;
-    transform: translate(400px,40px);
-	background: #565756;
-	border-radius: 15px;
-}
-
-.speech-bubble:after {
-	content: '';
-	position: absolute;
-	top: 20%;
-	left: 0;
-	width: 0;
-	height: 0;
-	border: 0.625em solid transparent;
-	border-right-color: #565756;
-	border-left: 0;
-	margin-left: -0.625em;
-	margin-top: -0.625em;
 }
